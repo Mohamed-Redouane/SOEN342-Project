@@ -26,6 +26,6 @@ public class FlightController {
 
     @GetMapping("/{source}&{destination}")
     public ResponseEntity<Optional<List<Flight>>> getSourceDestinationFlights(@PathVariable String source, @PathVariable String destination) {
-        return new ResponseEntity<Optional<List<Flight>>>(flightService.getMovieBySourceDestination(source, destination), HttpStatus.OK);
+        return new ResponseEntity<Optional<List<Flight>>>(flightService.getFlightBySourceDestination(source, destination), HttpStatus.OK);
     }
 }

@@ -21,7 +21,7 @@ public class FlightService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Optional<List<Flight>> getMovieBySourceDestination(String source, String destination) {
+    public Optional<List<Flight>> getFlightBySourceDestination(String source, String destination) {
         Query query = new Query();
         query.addCriteria(Criteria.where("source").is(source).and("destination").is(destination));
         List<Flight> flights = mongoTemplate.find(query, Flight.class);

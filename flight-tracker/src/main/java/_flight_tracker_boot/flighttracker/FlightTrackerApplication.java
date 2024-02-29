@@ -15,7 +15,7 @@ public class FlightTrackerApplication {
 
 	@GetMapping("/")
 	public String Root() {
-		return "Hello World";
+		return "HomePage";
 	}
 
 }
