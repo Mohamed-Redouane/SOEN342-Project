@@ -138,7 +138,7 @@ function App() {
                         <div className="d-flex justify-content-between"><span><b>Destination:</b> </span><span>{flight.destination}</span></div>
                       </p>
                       <p key={flight.airport}>
-                        <div className="d-flex justify-content-between"><span><b>Airport:</b> </span><span>{flight.airport}</span></div>
+                        <div className="d-flex justify-content-between"><span><b>Airport:</b> </span><span className="text-right">{flight.airport}</span></div>
                       </p>
                       <p key={"dep" + index}>
                         <div className="d-flex justify-content-between"><span><b>Departure Time:</b></span> <span>{flight.scheduledDepartureTime}</span></div>
