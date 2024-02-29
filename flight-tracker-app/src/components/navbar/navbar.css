@@ -1,0 +1,70 @@
+p {
+    all: unset;
+}
+
+.navbarMasterCtn {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    padding: 2rem;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 999;
+}
+
+.navbarMainContainer {
+    padding: 1.25rem;
+    background-color: var(--primary-blue);
+    border-radius: 3.5rem;
+    position: relative;
+}
+
+.navbarDropdownMode {
+    border-radius: 3.5rem 3.5rem 0 0 !important;
+}
+
+.statusCtn, .accountTypeCtn {
+    color: #FFF;
+}
+
+.registerBtn {
+    all: unset;
+    padding: 0.75rem;
+    background-color: #FFF;
+    border-radius: 3.5rem;
+    color: var(--primary-blue) !important;
+    transition: 0.1s all ease-in-out;
+}
+
+.registerBtn:hover {
+    transform: scale(1.05);
+}
+
+.accountDropdown {
+    position: absolute;
+    display: flex;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(50%);
+    background-color: #FFF;
+    color: var(--primary-blue);
+    border-radius: 2.5rem;
+    border: 2px solid var(--primary-blue);
+    min-width: 200px;
+}
+
+.accountDropdownCtn {
+    width: 100%;
+    padding: 0.25rem;
+}
+
+.accountDropdownItem {
+    width: 100%;
+    border-radius: 2.5rem;
+}
+
+.accountDropdownItem:hover {
+    background-color: var(--primary-blue);
+    color: #FFF;
+}
