@@ -9,7 +9,7 @@
 ### Spring Boot (Backend & Logic) ###
 * Open the 'flight-tracker' folder in a Java IDE.
 * Under 'src/main/resources' create a new empty file and name it '.env'
-* Copy and paste this code:
+* Copy and paste this code to connect to the Mongo Database:
 ```
 MONGO_DATABASE="Flight-Tracker-DB"
 MONGO_USER="sisahga"
