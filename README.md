@@ -18,3 +18,8 @@ MONGO_CLUSTER="flighttracker.b8zpvxc.mongodb.net/"
 ```
 * Under 'src/main/java/_flight_tracker_boot.flighttracker' open 'FlightTrackerApplication.java'
 * Run the code to start the server.
+
+### React (Frontend) ###
+* Open the 'flight-tracker-app' folder in Visual Studio Code.
+* Open a new terminal and type `npm install` to install all modules and dependencies.
+* Execute the following command: `npm start`
