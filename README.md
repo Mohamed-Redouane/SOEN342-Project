@@ -2,7 +2,7 @@
 ## Team Members:
 | Name                            | ID       | Email                               | Section | GitHub Username |
 |-------------------------------- |----------|-------------------------------------|---------|-----------------|
-| Sisahga Phimmasone (Team Leader)| 40210015 |                                     | GG      | Sisahga         |
+| Sisahga Phimmasone (Team Leader)| 40210015 | sisahga@gmail.com                   | GG      | Sisahga         |
 | Mohamed Nemroud                 | 40153847 | mohamed.nemroud@mail.concordia.ca   | GG      | Mohamed-Redouane|
 | Omar Alshanyour                 | 40209637 |                                     | GG      | HelloMeFriend   |
 
