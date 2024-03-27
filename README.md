@@ -1,8 +1,12 @@
-# SOEN342-Project
+# SOEN342-Project: Team 14
 ## Team Members:
-* Mohamed Nemroud - 40153847 (Mohamed-Redouane)
-* Omar Alshanyour - 40209637 (HelloMeFriend) 
-* Sisahga Phimmasone - 40210015 (Sisahga)
+| Name                            | ID       | Email                               | Section | GitHub Username |
+|-------------------------------- |----------|-------------------------------------|---------|-----------------|
+| Sisahga Phimmasone (Team Leader)| 40210015 |                                     | GG      | Sisahga         |
+| Mohamed Nemroud                 | 40153847 | mohamed.nemroud@mail.concordia.ca   | GG      | Mohamed-Redouane|
+| Omar Alshanyour                 | 40209637 |                                     | GG      | HelloMeFriend   |
+
+
 
 ## Guide ##
 
