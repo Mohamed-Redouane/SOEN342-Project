@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/Aircraft.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/Airline.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/Airport.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/Flight.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/Main.java" dialect="GenericSQL" />
+  </component>
+</project>
