@@ -287,22 +287,23 @@ public class Flight {
             getRegisteredFlightQuery = "SELECT flightNumber, source, destination, airline_id, aircraft_id, " +
                     "scheduledDepartureTime, scheduledArrivalTime, flightType FROM Flights " +
                     "WHERE source = ? AND destination = ? AND flightType = ?;";
-        }else if (accountType.equals("AIRPORT_ADMIN")) {
+        } else if (accountType.equals("AIRPORT_ADMIN")) {
             getRegisteredFlightQuery = "SELECT flightNumber, source, destination, aircraft_id, " +
                     "scheduledDepartureTime, scheduledArrivalTime, flightType FROM Flights " +
                     "WHERE source = ? AND destination = ?;";
         }
         return getRegisteredFlightQuery;
     }
+
     public ArrayList<Flight> getFlights(String source, String destination, String accountType,
-                                                                    String airportCode) {
+            String airportCode) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url, username, password);
             if (accountType.equals("GUEST")) {
                 String getGuestFlightQuery = "SELECT flightNumber, source, destination, scheduledDepartureTime, " +
-                                             "scheduledArrivalTime, flightType FROM Flights " +
-                                             "WHERE source = ? AND destination = ? AND flightType = ?;";
+                        "scheduledArrivalTime, flightType FROM Flights " +
+                        "WHERE source = ? AND destination = ? AND flightType = ?;";
                 PreparedStatement flightStatement = conn.prepareStatement(getGuestFlightQuery);
                 flightStatement.setString(1, source);
                 flightStatement.setString(2, destination);
@@ -318,19 +319,19 @@ public class Flight {
                     String flightDeparture = rs.getString("scheduledDepartureTime");
                     String flightArrival = rs.getString("scheduledArrivalTime");
                     String flightType = rs.getString("flightType");
-                    flight = new Flight(flightNum, flightSource, flightDest, flightDeparture, flightArrival, flightType);
+                    flight = new Flight(flightNum, flightSource, flightDest, flightDeparture, flightArrival,
+                            flightType);
                     flights.add(flight);
                 }
                 if (flight == null) {
                     System.out.println("No flights returned.");
                     return null;
                 }
-                
+
                 System.out.println("Successfully retrieved flights.");
                 return flights;
-                
-            }
-            else { // Registered Client
+
+            } else { // Registered Client
                 System.out.println("Registered client query.");
                 String getRegisteredFlightQuery = getRegisteredFlightQuery(accountType);
                 PreparedStatement flightStatement = conn.prepareStatement(getRegisteredFlightQuery);
@@ -368,8 +369,7 @@ public class Flight {
                         flight = new Flight(flightNum, flightSource, flightDest, aircraftId, flightDeparture,
                                 flightArrival, flightType);
                         flights.add(flight);
-                    }
-                    else if (accountType.equals("AIRLINE_ADMIN")) {
+                    } else if (accountType.equals("AIRLINE_ADMIN")) {
                         flight = new Flight(flightNum, flightSource, flightDest, airlineId, aircraftId, flightDeparture,
                                 flightArrival, flightType);
                         flights.add(flight);
@@ -382,11 +382,11 @@ public class Flight {
                 System.out.println("Successfully retrieved flights.");
                 return flights;
             }
-            
-    }
-    catch (Exception e) {
-        System.out.println("Something went wrong retrieving flights from the DB.");
-        return null;
-    }
 
+        } catch (Exception e) {
+            System.out.println("Something went wrong retrieving flights from the DB.");
+            return null;
+        }
+
+    }
 }
