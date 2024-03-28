@@ -330,6 +330,58 @@ public class Flight {
                 return flights;
                 
             }
+            else { // Registered Client
+                System.out.println("Registered client query.");
+                String getRegisteredFlightQuery = getRegisteredFlightQuery(accountType);
+                PreparedStatement flightStatement = conn.prepareStatement(getRegisteredFlightQuery);
+                flightStatement.setString(1, source);
+                flightStatement.setString(2, destination);
+                if (accountType.equals("AIRLINE_ADMIN")) {
+                    flightStatement.setString(3, "NON_PRIVATE_FLIGHT");
+                }
+                System.out.println("Retrieving flight...");
+                ResultSet rs = flightStatement.executeQuery();
+                ArrayList<Flight> flights = new ArrayList<>();
+                Flight flight = null;
+                int airlineId = 0;
+                while (rs.next()) {
+                    int flightNum = rs.getInt("flightNumber");
+                    String flightSource = rs.getString("source");
+                    String flightDest = rs.getString("destination");
+                    if (accountType.equals("AIRLINE_ADMIN"))
+                        airlineId = rs.getInt("airline_id");
+                    int aircraftId = rs.getInt("aircraft_id");
+                    String flightDeparture = rs.getString("scheduledDepartureTime");
+                    String flightArrival = rs.getString("scheduledArrivalTime");
+                    String flightType = rs.getString("flightType");
+                    System.out.println("Airport admin code: " + airportCode);
+                    System.out.println("Flight Type " + flightNum + ": " + flightType);
+                    if (airportCode != null && accountType.equals("AIRPORT_ADMIN") &&
+                            flightType.equals("PRIVATE_FLIGHT")) {
+                        System.out.println("Entered airport admin condition");
+                        if (!airportCode.equals(flightSource) && !airportCode.equals(flightDest)) {
+                            System.out.println("You don't have access to view private flight " + flightNum);
+                            continue;
+                        }
+                    }
+                    if (accountType.equals("AIRPORT_ADMIN")) {
+                        flight = new Flight(flightNum, flightSource, flightDest, aircraftId, flightDeparture,
+                                flightArrival, flightType);
+                        flights.add(flight);
+                    }
+                    else if (accountType.equals("AIRLINE_ADMIN")) {
+                        flight = new Flight(flightNum, flightSource, flightDest, airlineId, aircraftId, flightDeparture,
+                                flightArrival, flightType);
+                        flights.add(flight);
+                    }
+                }
+                if (flight == null) {
+                    System.out.println("No flights returned.");
+                    return null;
+                }
+                System.out.println("Successfully retrieved flights.");
+                return flights;
+            }
             
     }
     catch (Exception e) {
