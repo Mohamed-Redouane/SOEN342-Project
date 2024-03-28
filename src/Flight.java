@@ -280,4 +280,49 @@ public class Flight {
         }
         return "Flight stored.";
     }
+
+    private static String getRegisteredFlightQuery(String accountType) {
+        String getRegisteredFlightQuery = "";
+        if (accountType.equals("AIRLINE_ADMIN")) {
+            getRegisteredFlightQuery = "SELECT flightNumber, source, destination, airline_id, aircraft_id, " +
+                    "scheduledDepartureTime, scheduledArrivalTime, flightType FROM Flights " +
+                    "WHERE source = ? AND destination = ? AND flightType = ?;";
+        }
+    }
+    public ArrayList<Flight> getFlights(String source, String destination, String accountType,
+                                                                    String airportCode) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, username, password);
+            if (accountType.equals("GUEST")) {
+                String getGuestFlightQuery = "SELECT flightNumber, source, destination, scheduledDepartureTime, " +
+                                             "scheduledArrivalTime, flightType FROM Flights " +
+                                             "WHERE source = ? AND destination = ? AND flightType = ?;";
+                PreparedStatement flightStatement = conn.prepareStatement(getGuestFlightQuery);
+                flightStatement.setString(1, source);
+                flightStatement.setString(2, destination);
+                flightStatement.setString(3, "NON_PRIVATE_FLIGHT");
+                System.out.println("Retrieving flight...");
+                ResultSet rs = flightStatement.executeQuery();
+                ArrayList<Flight> flights = new ArrayList<>();
+                Flight flight = null;
+                while (rs.next()) {
+                    int flightNum = rs.getInt("flightNumber");
+                    String flightSource = rs.getString("source");
+                    String flightDest = rs.getString("destination");
+                    String flightDeparture = rs.getString("scheduledDepartureTime");
+                    String flightArrival = rs.getString("scheduledArrivalTime");
+                    String flightType = rs.getString("flightType");
+                    flight = new Flight(flightNum, flightSource, flightDest, flightDeparture, flightArrival, flightType);
+                    flights.add(flight);
+                }
+                if (flight == null) {
+                    System.out.println("No flights returned.");
+                    return null;
+                }
+                
+                System.out.println("Successfully retrieved flights.");
+                return flights;
+            }
+    }
 }
