@@ -288,6 +288,7 @@ public class Flight {
                     "scheduledDepartureTime, scheduledArrivalTime, flightType FROM Flights " +
                     "WHERE source = ? AND destination = ? AND flightType = ?;";
         }
+        return getRegisteredFlightQuery;
     }
     public ArrayList<Flight> getFlights(String source, String destination, String accountType,
                                                                     String airportCode) {
@@ -325,4 +326,9 @@ public class Flight {
                 return flights;
             }
     }
+    catch (Exception e) {
+        System.out.println("Something went wrong retrieving flights from the DB.");
+        return null;
+    }
+
 }
