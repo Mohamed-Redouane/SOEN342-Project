@@ -287,6 +287,10 @@ public class Flight {
             getRegisteredFlightQuery = "SELECT flightNumber, source, destination, airline_id, aircraft_id, " +
                     "scheduledDepartureTime, scheduledArrivalTime, flightType FROM Flights " +
                     "WHERE source = ? AND destination = ? AND flightType = ?;";
+        }else if (accountType.equals("AIRPORT_ADMIN")) {
+            getRegisteredFlightQuery = "SELECT flightNumber, source, destination, aircraft_id, " +
+                    "scheduledDepartureTime, scheduledArrivalTime, flightType FROM Flights " +
+                    "WHERE source = ? AND destination = ?;";
         }
         return getRegisteredFlightQuery;
     }
@@ -324,7 +328,9 @@ public class Flight {
                 
                 System.out.println("Successfully retrieved flights.");
                 return flights;
+                
             }
+            
     }
     catch (Exception e) {
         System.out.println("Something went wrong retrieving flights from the DB.");
