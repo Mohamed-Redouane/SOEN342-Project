@@ -94,4 +94,61 @@ public static void main(String[] args) {
         runPublicUserTask(kb, action);
     }
 }
+static void runAirportTask(Scanner kb, int action) {
+    switch (action) {
+        case 1:
+            System.out.println("### --- Register a new Private Flight --- ###");
+            kb.nextLine();
+
+            System.out.println("Enter Private FLIGHT data as below with no spaces and commas between fields:");
+            System.out.println("(source,destination,departure time YYYY-MM-DD HH:MM:SS," +
+                    "arrival time YYYY-MM-DD HH:MM:SS)");
+            kb.nextLine();
+            String flightInput = kb.nextLine();
+            String[] flightData = flightInput.split(",");
+            for (String data : flightData) {
+                System.out.print(data + ", ");
+            }
+            System.out.println();
+            System.out.println("Creating new flight instance and storing...");
+            Flight flight = new Flight();
+            String flightResponse = flight.createFlight(flightData[0], flightData[1], flightData[2], flightData[3],
+                    "PRIVATE_FLIGHT", 0, accountType);
+            System.out.println(flightResponse);
+            break;
+        case 2:
+            System.out.println("### --- View Flights --- ###");
+            kb.nextLine();
+
+            System.out.println("Enter your airport code: ");
+            String airportCode = kb.nextLine();
+
+            System.out.println("Enter a source-destination pair separated by a comma (ex: YUL,YYZ)");
+            String pairInput = kb.nextLine();
+            String source = pairInput.split(",")[0];
+            String destination = pairInput.split(",")[1];
+            System.out.println("Searching flights from " + source + " to " + destination + " for " + accountType + "...");
+
+            Flight flightSearch = new Flight();
+            List<Flight> retrievedFlights = flightSearch.getFlights(source, destination, accountType, airportCode);
+            if (retrievedFlights != null) {
+                Airline al = new Airline();
+                Aircraft ac = new Aircraft();
+
+                System.out.println("### Flights from " + source + " to " + destination + ": ");
+                int counter = 0;
+                for (Flight returnedFlight : retrievedFlights) {
+                    System.out.println("###################################################");
+                    System.out.println("Flight " + (counter + 1) + ": ");
+                    displayBasicFlightInfo(returnedFlight);
+                    System.out.println("\tFlight Aircraft: " + ac.getAircraftName(returnedFlight.getAircraft_id()));
+
+                    counter++;
+                }
+            }
+            break;
+        default:
+            break;
+    }
+}
 }
